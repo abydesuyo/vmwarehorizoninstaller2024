@@ -13,11 +13,11 @@ rm -rf VMware-Horizon-Client*
 echo "Lets try downloading... $DOWNLOAD"
 wget $DOWNLOAD
 chmod +x VMware-Horizon-Client-2312.1-8.12.1-23543969.x64.bundle
-sudo steamos-readonly disable
-echo "removing isntaller"
+echo "removing old installations"
 sudo rm -rf /etc/vmware*
 sudo rm -rf $HOME/.vmware/*
 sudo rmdir $HOME/.vmware
+sudo steamos-readonly disable
 sudo ./VMware-Horizon-Client-2312.1-8.12.1-23543969.x64.bundle --console --required --eulas-agreed
 THEME=`kreadconfig5 --key LookAndFeelPackage`
 sudo sed -i "s/Exec=vmware-view %u/Exec=env GTK_THEME=$THEME vmware-view %u/g" /usr/share/applications/vmware-view.desktop
